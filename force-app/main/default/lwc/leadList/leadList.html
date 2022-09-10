@@ -1,0 +1,13 @@
+<template>
+    <lightning-input label="Search Term" variant="label-hidden"
+        placeholder="Enter search name, phone, website or address" type="text" value={searchTerm}
+        onchange={handleSearchTermChange}></lightning-input>
+    <h3>Leads for {searchTerm}</h3>
+    <div class="slds-var-m-around_small">
+        <template if:true={leads}>
+            <template for:each={leads} for:item="lead">
+                <c-lead-list-item key={lead.Id} lead={lead}></c-lead-list-item>
+            </template>
+        </template>
+    </div>
+</template>

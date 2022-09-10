@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:lead" size="small" class="slds-var-m-right_small"></lightning-icon>
+            Lead Search
+        </h3>
+        <div class="container">
+            <div class="section">
+                <c-lead-list onnewsearch={handleNewSearch}></c-lead-list>
+            </div>
+            <div class="section">
+                <p>Slot to Map</p>
+            </div>
+        </div>
+    </lightning-card>
+</template>

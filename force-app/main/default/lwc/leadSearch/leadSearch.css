@@ -1,0 +1,12 @@
+.container {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;   
+    width: 100%;
+}
+
+.section {
+    padding: 20px;
+    flex: 1;
+}
