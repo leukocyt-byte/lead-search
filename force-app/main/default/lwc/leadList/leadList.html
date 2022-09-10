@@ -12,6 +12,6 @@
         onrowaction={handlerowaction}
         hide-checkbox-column="true"></lightning-datatable>    
         <template if:true={error}>
-            There was an error: {error}.
+            <c-error-panel errors={error}></c-error-panel>
         </template>
 </template>
