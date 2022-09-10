@@ -4,13 +4,26 @@
             <lightning-icon icon-name="standard:lead" size="small" class="slds-var-m-right_small"></lightning-icon>
             Lead Search
         </h3>
-        <div class="container">
-            <div class="section">
-                <c-lead-list onnewsearch={handleNewSearch}></c-lead-list>
-            </div>
-            <div class="section">
-                <p>Slot to Map</p>
-            </div>
-        </div>
     </lightning-card>
+    <div class="slds-m-bottom_small"></div>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item size="12" >
+            <lightning-layout>
+                <lightning-layout-item class="slds-p-right_small" size="6">
+                    <lightning-card>
+                        <div class="slds-p-around_small">
+                            <c-lead-list onnewsearch={handleNewSearch} class="slds-m-around_small"></c-lead-list>
+                        </div>                        
+                    </lightning-card>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <lightning-card>
+                        <div class="slds-p-around_small">
+                            <p>Slot to Map</p>
+                        </div>                          
+                    </lightning-card>
+                </lightning-layout-item>     
+            </lightning-layout>
+        </lightning-layout-item>
+    </lightning-layout>
 </template>
