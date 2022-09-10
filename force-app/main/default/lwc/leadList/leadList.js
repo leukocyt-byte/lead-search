@@ -1,5 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 import searchLeads from '@salesforce/apex/LeadSearchController.searchLeads';
+import { NavigationMixin } from 'lightning/navigation';
 
 const delay = 350;
 const COLS = [
@@ -29,7 +30,7 @@ const COLS = [
         }
     }
 ];
-export default class LeadList extends LightningElement {
+export default class LeadList extends NavigationMixin(LightningElement) {
     @track leads = [];
     @track searchTerm;
     @track cols = COLS;
@@ -54,5 +55,17 @@ export default class LeadList extends LightningElement {
         this.delayTimeout = setTimeout(() => {
             this.dispatchEvent(selectedEvent);
         }, delay);        
-    }  
+    }
+
+    handleRowAction(event) {
+        const row = event.detail.row;
+        this.record = row;
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: row.Id,
+                actionName: 'view'
+            },           
+        });
+    }
 }
