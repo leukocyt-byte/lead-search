@@ -40,6 +40,8 @@ export default class LeadList extends NavigationMixin(LightningElement) {
     loadLeads( {error, data } ) {
         if (data) {
             this.leads = data;
+            const selectedEvent = new CustomEvent('searchomplete', {detail: this.searchTerm});
+            this.dispatchEvent(selectedEvent);
             this.error = undefined;
 
         } else if (error) {
@@ -49,12 +51,15 @@ export default class LeadList extends NavigationMixin(LightningElement) {
     }
 
     handleSearchTermChange(event) {
-        this.searchTerm = event.target.value;
+        if (this.leads) {
+            this.searchTerm = event.target.value;
         const selectedEvent = new CustomEvent('newsearch', {detail: this.searchTerm});
         window.clearTimeout(this.delayTimeout);
         this.delayTimeout = setTimeout(() => {
             this.dispatchEvent(selectedEvent);
-        }, delay);        
+        }, delay);   
+        }
+             
     }
 
     handleRowAction(event) {
