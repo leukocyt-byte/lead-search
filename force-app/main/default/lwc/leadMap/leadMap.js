@@ -1,14 +1,22 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import searchLeads from '@salesforce/apex/LeadSearchController.searchLeads';
 
 export default class LeadMap extends LightningElement {
     @track markers = [];
     @track error;
     @track leads = [];
-    @track searchTerm;
+    
+    searchTerm;
+    @api get searchInput() {
+        return this.searchTerm;
+    }
+
+    set searchInput(value) {
+        this.searchTerm = value;
+    }
 
     @wire(searchLeads, {
-        searchTerm: '$searchterm'
+        searchTerm: '$searchInput'
     })
     loadLeads({ error, data }) {
         if (data) {
