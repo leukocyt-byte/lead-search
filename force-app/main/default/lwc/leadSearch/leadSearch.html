@@ -12,14 +12,30 @@
                 <lightning-layout-item class="slds-p-right_small" size="6">
                     <lightning-card>
                         <div class="slds-p-around_small">
-                            <c-lead-list onnewsearch={handleNewSearch} class="slds-m-around_small"></c-lead-list>
+                            <c-lead-list onnewsearch={handleNewSearch} 
+                                         class="slds-m-around_small"
+                                         onsearchcomplete={handleSearchComplete}></c-lead-list>
                         </div>                        
                     </lightning-card>
                 </lightning-layout-item>
                 <lightning-layout-item size="6">
                     <lightning-card>
                         <div class="slds-p-around_small">
-                            <p>Slot to Map</p>
+                            <div class="slds-box slds-theme_default">
+                                <lightning-card title="Lead Map"
+                                                icon-name="action:map"
+                                                class="">
+                                    <template if:true={searchComplete}>
+                                        <c-lead-map search-input={searchInput}></c-lead-map>
+                                    </template>
+                                    <template if:false={searchComplete}>
+                                        <div class="slds-notify">
+                                            <span class="slds-assistive-text">info</span>
+                                            <h2>You need to enter a search term before a map id display.</h2>
+                                        </div>
+                                    </template>
+                                </lightning-card>
+                            </div>
                         </div>                          
                     </lightning-card>
                 </lightning-layout-item>     
